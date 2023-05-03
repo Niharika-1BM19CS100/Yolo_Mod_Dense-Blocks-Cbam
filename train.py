@@ -80,31 +80,31 @@ def main():
         #plot_couple_examples(model, test_loader, 0.6, 0.5, scaled_anchors)
         train_fn(train_loader, model, optimizer, loss_fn, scaler, scaled_anchors)
 
-        #if config.SAVE_MODEL:
-        #    save_checkpoint(model, optimizer, filename=f"checkpoint.pth.tar")
+        if config.SAVE_MODEL:
+            save_checkpoint(model, optimizer, filename=f"checkpoint.pth.tar")
 
-        #print(f"Currently epoch {epoch}")
-        #print("On Train Eval loader:")
-        #print("On Train loader:")
-        #check_class_accuracy(model, train_loader, threshold=config.CONF_THRESHOLD)
+        print(f"Currently epoch {epoch}")
+        print("On Train Eval loader:")
+        print("On Train loader:")
+        check_class_accuracy(model, train_loader, threshold=config.CONF_THRESHOLD)
 
-        if epoch > 0 and epoch % 3 == 0:
-            check_class_accuracy(model, test_loader, threshold=config.CONF_THRESHOLD)
-            pred_boxes, true_boxes = get_evaluation_bboxes(
-                test_loader,
-                model,
-                iou_threshold=config.NMS_IOU_THRESH,
-                anchors=config.ANCHORS,
-                threshold=config.CONF_THRESHOLD,
-            )
-            mapval = mean_average_precision(
-                pred_boxes,
-                true_boxes,
-                iou_threshold=config.MAP_IOU_THRESH,
-                box_format="midpoint",
-                num_classes=config.NUM_CLASSES,
-            )
-            print(f"MAP: {mapval.item()}")
+        #if epoch > 0 and epoch % 3 == 0:
+        #    check_class_accuracy(model, test_loader, threshold=config.CONF_THRESHOLD)
+        #    pred_boxes, true_boxes = get_evaluation_bboxes(
+        #        test_loader,
+        #        model,
+        #        iou_threshold=config.NMS_IOU_THRESH,
+        #        anchors=config.ANCHORS,
+        #        threshold=config.CONF_THRESHOLD,
+        #    )
+        #    mapval = mean_average_precision(
+        #        pred_boxes,
+        #        true_boxes,
+        #        iou_threshold=config.MAP_IOU_THRESH,
+        #        box_format="midpoint",
+        #        num_classes=config.NUM_CLASSES,
+        #    )
+        #    print(f"MAP: {mapval.item()}")
 
 
 if __name__ == "__main__":
