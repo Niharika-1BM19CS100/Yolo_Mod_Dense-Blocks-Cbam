@@ -22,8 +22,8 @@ PIN_MEMORY = True
 LOAD_MODEL = False
 SAVE_MODEL = True
 CHECKPOINT_FILE = "checkpoint.pth.tar"
-IMG_DIR = path + "\\" + DATASET + "\images\\"
-LABEL_DIR = path + "\\" + DATASET + "\images\\"
+IMG_DIR = DATASET + "/images/"
+LABEL_DIR = DATASET + "/images/"
 
 ANCHORS = [
     [(0.28, 0.22), (0.38, 0.48), (0.9, 0.78)],
