@@ -2,6 +2,7 @@
 
 import torch
 import torch.nn as nn
+from cbam import cbam
 
 config = [
     (32, 3, 1),
@@ -171,6 +172,7 @@ class YOLOv3(nn.Module):
                 if module == "S":
                     layers += [
                         DenseBlock(in_channels, use_residual=False, num_repeats=1),
+                        cbam(in_channels),
                         CNNBlock(in_channels, in_channels // 2, kernel_size=1),
                         ScalePrediction(in_channels // 2, num_classes=self.num_classes),
                     ]
