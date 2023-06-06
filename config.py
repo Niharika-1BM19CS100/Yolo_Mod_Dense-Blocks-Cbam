@@ -5,7 +5,7 @@ import os
 from albumentations.pytorch import ToTensorV2
 
 path = os.getcwd()
-DATASET = 'trashnet'
+DATASET = 'trash-dataset'
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 NUM_WORKERS = 4
 BATCH_SIZE = 32
